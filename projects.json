@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Photography Website",
+    "description": "A photography website with e-commerce capabilities.",
+    "image": "https://placehold.co/600x400/0f3460/e94560?text=Project+One",
+    "tags": ["HTML", "CSS", "JavaScript"]
+  },
+  {
+    "title": "Data Visualization Dashboard",
+    "description": "An interactive dashboard for visualizing complex datasets.",
+    "image": "https://placehold.co/600x400/0f3460/e94560?text=Project+Two",
+    "tags": ["Python", "JavaScript"]
+  },
+  {
+    "title": "Personal Blog",
+    "description": "A responsive blog platform with a custom content management system.",
+    "image": "https://placehold.co/600x400/0f3460/e94560?text=Project+Three",
+    "tags": ["Python", "HTML"]
+  },
+  {
+    "title": "Task Management App",
+    "description": "A simple and intuitive app to manage daily tasks.",
+    "image": "https://placehold.co/600x400/0f3460/e94560?text=Project+Four",
+    "tags": ["JavaScript", "CSS"]
+  }
+]

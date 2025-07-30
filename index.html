@@ -3,12 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Pages</title>
-    <link> rel="stylesheet" href="assets/css/styles.css">
+    <title>Dylan van Rooyen - Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Font to Space Grotesk -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    <h1>Hello World</h1>
-    <p>Dylans Portfolio</p>
-    <img src="assets\pictures\DylanBW.jpg" alt="Dylans Portfolio head shot" width 300 height 300>"
+
+    <!-- Header & Navigation -->
+    <header class="main-header">
+        <div class="container">
+            
+            <div class="logo-container">
+                <!-- Headshot image added here -->
+                <img src="assets/images/DylanBW.jpg" alt="Dylan van Rooyen Headshot" class="header-headshot">
+                <a href="#" class="logo">DvR</a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Hi, I'm Dylan van Rooyen.</h1>
+                    <!-- This paragraph will have the typing effect -->
+                    <p class="subtitle">I'm a <span id="typing-effect"></span><span id="cursor">|</span></p>
+                    <a href="#projects" class="btn">View My Work</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container">
+                <h2>My Projects</h2>
+                <!-- Filter buttons will be generated here by JS -->
+                <div id="project-filters"></div>
+                <!-- Project cards will be generated here by JS -->
+                <div class="projects-grid"></div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                <!-- Updated Formspree Action URL -->
+                <form id="contact-form" action="https://formspree.io/f/xqallqaw" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <div class="submit-btn">
+                        <button type="submit" class="btn">Send Message</button>
+                    </div>
+                </form>
+
+                <!-- LinkedIn Link -->
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/dylan-van-rooyen-it" target="_blank" rel="noopener noreferrer">Find me on LinkedIn</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Dylan van Rooyen. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Link to the new JavaScript file -->
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
