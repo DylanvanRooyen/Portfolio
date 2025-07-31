@@ -6,7 +6,6 @@
     <title>Dylan van Rooyen - Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Font to Space Grotesk -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <!-- Link to the external CSS file -->
@@ -19,7 +18,6 @@
         <div class="container">
             
             <div class="logo-container">
-                <!-- Headshot image added here -->
                 <img src="assets/images/DylanBW.jpg" alt="Dylan van Rooyen Headshot" class="header-headshot">
                 <a href="#" class="logo">DvR</a>
             </div>
@@ -50,9 +48,9 @@
         <section id="projects">
             <div class="container">
                 <h2>My Projects</h2>
-                <!-- Filter buttons will be generated here by JS -->
+                <!-- Filter buttons generated here by JS -->
                 <div id="project-filters"></div>
-                <!-- Project cards will be generated here by JS -->
+                <!-- Project cards generated here by JS -->
                 <div class="projects-grid"></div>
             </div>
         </section>
@@ -80,10 +78,24 @@
                     </div>
                 </form>
 
-                <!-- LinkedIn Link -->
+                <!-- Social Media Links -->
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/dylan-van-rooyen-it" target="_blank" rel="noopener noreferrer">Find me on LinkedIn</a>
+                    <!-- LinkedIn Badge -->
+                    <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="dylan-van-rooyen-it" data-version="v1"></div>
+                    
+                    <!-- Custom X (Twitter) Badge -->
+                    <a href="https://x.com/dylanvr13" target="_blank" rel="noopener noreferrer" class="x-badge">
+                        <div class="x-badge-header">
+                             <svg viewBox="0 0 24 24" aria-hidden="true" class="x-icon"><g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g></svg>
+                        </div>
+                        <div class="x-badge-body">
+                            <img src="assets/images/xImage.jpg" alt="Dylan van Rooyen" class="x-badge-photo">
+                            <span class="x-badge-handle">@dylanvr13</span>
+                            <span class="x-badge-button">View profile</span>
+                        </div>
+                    </a>
                 </div>
+
             </div>
         </section>
     </main>
@@ -95,7 +107,9 @@
         </div>
     </footer>
 
-    <!-- Link to the new JavaScript file -->
+    <!-- Link to custom JavaScript file -->
     <script src="assets/js/main.js"></script>
+    <!-- LinkedIn Badge Script -->
+    <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
 </body>
 </html>

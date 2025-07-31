@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. TYPING EFFECT ---
-    const roles = ["Web Developer", "Python Programmer", "UI/UX Enthusiast"];
+    const roles = ["Web Developer", "Python Programmer", "Data Anayst"];
     let roleIndex = 0;
     let charIndex = 0;
     const typingElement = document.getElementById('typing-effect');

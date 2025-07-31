@@ -6,14 +6,12 @@
     --secondary-color: #0f3460;
     --accent-color: #e94560;
     --text-color: #e0e0e0;
-    /* Updated font variable */
     --header-font: 'Space Grotesk', sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-    /* Updated font-family to use the new font */
     font-family: 'Space Grotesk', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -50,7 +48,7 @@ section { padding: 6rem 0; }
     object-fit: cover;
     margin-right: 1rem;
     border: 2px solid var(--secondary-color);
-    /* Added transition for the hover effect */
+    /*Transition for hover effect */
     transition: transform 0.3s ease;
 }
 
@@ -165,24 +163,78 @@ section { padding: 6rem 0; }
 .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent-color); }
 .submit-btn { width: 100%; text-align: center; }
 
+/* --- SOCIAL LINKS STYLES --- */
 .social-links {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
     margin-top: 3rem;
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
 }
 
-.social-links a {
-    color: var(--text-color);
+/* --- CUSTOM X (TWITTER) BADGE STYLES --- */
+.x-badge {
+    display: block;
+    width: 252px;
+    background-color: #000;
+    border-radius: 8px;
+    overflow: hidden;
     text-decoration: none;
-    font-size: 1.1rem;
-    border-bottom: 2px solid var(--secondary-color);
-    padding-bottom: 3px;
-    transition: all 0.3s ease;
+    color: #fff;
+    border: 1px solid #171729;
+    /*transition: transform 0.3s ease;*/
 }
 
-.social-links a:hover {
-    color: var(--accent-color);
-    border-bottom-color: var(--accent-color);
+.x-badge-header {
+    background-color: #38434f; /* Dark grey header */
+    padding: 0.41rem;
 }
+
+.x-badge-header .x-icon {
+    width: 24px;
+    height: 24px;
+    fill: #fff;
+}
+
+.x-badge-body {
+    padding: 0.20rem;
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.x-badge-photo {
+    width: 57px;
+    height: 57px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 0.75rem;
+}
+
+.x-badge-handle {
+    display: block;
+    font-size: 1rem;
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-family: proxima-nova, sans-serif;
+    
+}
+
+.x-badge-button {
+    display: inline-block;
+    padding: 0rem 1.06rem;
+    border: 1px solid #fff;
+    border-radius: 21px;
+    font-weight: 504;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.x-badge:hover .x-badge-button {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+/* --- END SOCIAL STYLES --- */
 
 .main-footer { text-align: center; padding: 2rem 0; background: var(--primary-color); margin-top: 4rem; }
 
