@@ -70,6 +70,8 @@ section { padding: 6rem 0; }
     text-align: center;
     justify-content: center;
     padding-top: 60px;
+    /* Add a background image */
+    background: url('assets/images/your-hero-image.jpg') no-repeat center center/cover;
 }
 #hero .hero-content { max-width: 800px; }
 #hero .highlight { color: var(--accent-color); }
@@ -364,6 +366,7 @@ section { padding: 6rem 0; }
     h2 { font-size: 2rem; }
     .main-header .container { flex-direction: column; }
     .main-nav { margin-top: 1rem; }
+    #hero { background-image: none; height: auto; padding: 8rem 0 4rem 0;}
     .social-links {
         flex-direction: column;
         gap: 1.5rem;
