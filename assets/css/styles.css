@@ -173,6 +173,66 @@ section { padding: 6rem 0; }
     flex-wrap: wrap; /* Allows items to wrap on smaller screens */
 }
 
+/* --- CUSTOM LINKEDIN BADGE STYLES --- */
+.linkedin-badge {
+    display: block;
+    width: 252px;
+    background-color: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid #171729;
+}
+
+.linkedin-badge-header {
+    background-color: #0A66C2; /* LinkedIn Blue */
+    padding: 0.41rem;
+}
+
+.linkedin-badge-header .linkedin-icon {
+    width: 24px;
+    height: 24px;
+    fill: #fff;
+}
+
+.linkedin-badge-body {
+    padding: 0.20rem;
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.linkedin-badge-photo {
+    width: 57px;
+    height: 57px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 0.75rem;
+}
+
+.linkedin-badge-name {
+    display: block;
+    font-size: 1rem;
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-family: proxima-nova, sans-serif;
+}
+
+.linkedin-badge-button {
+    display: inline-block;
+    padding: 0rem 1.06rem;
+    border: 1px solid #fff;
+    border-radius: 21px;
+    font-weight: 504;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.linkedin-badge:hover .linkedin-badge-button {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
 /* --- CUSTOM X (TWITTER) BADGE STYLES --- */
 .x-badge {
     display: block;
