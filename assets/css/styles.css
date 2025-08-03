@@ -1,11 +1,11 @@
 /* assets/css/styles.css */
 
 :root {
-    --bg-color: #1a1a2e;
-    --primary-color: #16213e;
-    --secondary-color: #0f3460;
-    --accent-color: #e94560;
-    --text-color: #e0e0e0;
+    /* New Dark Mode Palette */
+    --bg-color: #000000;       /* Primary Black */
+    --text-color: #FFFFFF;       /* Primary White */
+    --primary-color: #FFEA00;   /* Primary Yellow */
+    --accent-color: #0047AB;  /* Accent Blue (Cobalt) */
     --header-font: 'Space Grotesk', sans-serif;
 }
 
@@ -20,11 +20,16 @@ body {
 .container { max-width: 1100px; margin: auto; padding: 0 2rem; overflow: hidden; }
 h1, h2 { font-weight: 600; margin-bottom: 1rem; }
 h1 { font-size: 3.5rem; line-height: 1.2; }
-h2 { font-size: 2.5rem; color: var(--accent-color); text-align: center; margin-bottom: 3rem; }
+h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color); /* Use Yellow for headlines */
+    text-align: center;
+    margin-bottom: 3rem;
+}
 section { padding: 6rem 0; }
 
 .main-header {
-    background: rgba(22, 33, 62, 0.8);
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
     backdrop-filter: blur(10px);
     padding: 1rem 0;
     position: fixed;
@@ -32,6 +37,7 @@ section { padding: 6rem 0; }
     top: 0;
     z-index: 1000;
     transition: background 0.3s ease;
+    border-bottom: 1px solid #222;
 }
 .main-header .container { display: flex; justify-content: space-between; align-items: center; }
 
@@ -47,21 +53,19 @@ section { padding: 6rem 0; }
     border-radius: 50%;
     object-fit: cover;
     margin-right: 1rem;
-    border: 2px solid var(--secondary-color);
-    /*Transition for hover effect */
+    border: 2px solid var(--primary-color);
     transition: transform 0.3s ease;
 }
 
 .header-headshot:hover {
-    /* Increases the size of the headshot on hover */
     transform: scale(1.15);
 }
 /* --- END STYLES --- */
 
-.logo { font-size: 1.5rem; font-weight: 700; color: var(--accent-color); text-decoration: none; }
+.logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; }
 .main-nav ul { display: flex; list-style: none; }
 .main-nav a { color: var(--text-color); text-decoration: none; padding: 0.5rem 1rem; transition: color 0.3s ease; }
-.main-nav a:hover { color: var(--accent-color); }
+.main-nav a:hover { color: var(--primary-color); } /* Yellow hover */
 
 #hero {
     height: 100vh;
@@ -70,24 +74,33 @@ section { padding: 6rem 0; }
     text-align: center;
     justify-content: center;
     padding-top: 60px;
-    /* Add a background image */
-    background: url('assets/images/your-hero-image.jpg') no-repeat center center/cover;
 }
 #hero .hero-content { max-width: 800px; }
-#hero .highlight { color: var(--accent-color); }
-.subtitle { font-size: 1.5rem; margin-top: 1rem; color: #a0a0a0; }
+.subtitle { font-size: 1.5rem; margin-top: 1rem; color: #ccc; }
 #cursor {
     animation: blink 0.7s infinite;
-    color: var(--accent-color);
+    color: var(--primary-color);
 }
 @keyframes blink {
     50% { opacity: 0; }
 }
 
+/* --- HERO TITLE HOVER STYLES --- */
+#hero h1 span {
+    display: inline-block; /* Allows for transform and better spacing */
+    transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+#hero h1 span.hover-yellow {
+    color: var(--primary-color);
+    transform: translateY(-4px) scale(1.1);
+}
+/* --- END HERO TITLE STYLES --- */
+
 .btn {
     display: inline-block;
-    background: var(--accent-color);
-    color: #fff;
+    background: var(--accent-color); /* Blue CTA */
+    color: var(--text-color); /* White text for contrast */
     padding: 0.8rem 2rem;
     border: none;
     border-radius: 5px;
@@ -98,7 +111,7 @@ section { padding: 6rem 0; }
     margin-top: 2rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4); }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0, 71, 171, 0.5); }
 
 #project-filters {
     text-align: center;
@@ -106,76 +119,87 @@ section { padding: 6rem 0; }
 }
 .filter-btn {
     background: transparent;
-    border: 1px solid var(--secondary-color);
-    color: var(--text-color);
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
     padding: 0.5rem 1.5rem;
     margin: 0 0.5rem;
     border-radius: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
-.filter-btn:hover {
-    background-color: var(--secondary-color);
-    border-color: var(--accent-color);
-}
-.filter-btn.active {
+.filter-btn:hover, .filter-btn.active {
     background-color: var(--accent-color);
-    color: #fff;
+    color: var(--text-color);
     border-color: var(--accent-color);
 }
 
+#projects {
+    background-color: #111111; /* Dark grey background for section */
+}
 #projects .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
 }
 .project-card {
-    background: var(--primary-color);
+    background: #1a1a1a; /* Dark cards */
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #333;
 }
-.project-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+.project-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
 .project-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
 .project-content { padding: 1.5rem; }
-.project-content h3 { margin-bottom: 0.5rem; }
+.project-content h3 { color: var(--primary-color); margin-bottom: 0.5rem; }
 .project-tags { margin-top: 1rem; }
 .project-tags span {
-    background: var(--secondary-color);
-    color: var(--accent-color);
+    background: var(--accent-color);
+    color: var(--text-color);
     padding: 0.3rem 0.6rem;
     border-radius: 5px;
     font-size: 0.8rem;
     margin-right: 0.5rem;
 }
 
+#contact {
+    background-color: var(--primary-color); /* Yellow section */
+    color: #000000; /* Black text for contrast */
+}
+#contact h2 {
+    color: #000000;
+}
 #contact-form { max-width: 700px; margin: 2rem auto; text-align: left; }
 .form-group { margin-bottom: 1.5rem; }
-.form-group label { display: block; margin-bottom: 0.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
 .form-group input, .form-group textarea {
     width: 100%;
     padding: 0.8rem;
     border-radius: 5px;
-    border: 1px solid var(--secondary-color);
-    background: var(--primary-color);
-    color: var(--text-color);
+    border: 1px solid #ccc;
+    background: #FFFFFF;
+    color: #000000;
     font-family: inherit;
 }
-.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent-color); }
+.form-group input:focus, .form-group textarea:focus { 
+    outline: none; 
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(0, 71, 171, 0.4);
+}
 .submit-btn { width: 100%; text-align: center; }
 
-/* --- SOCIAL LINKS STYLES --- */
+/* --- SOCIAL LINKS STYLES (UNCHANGED) --- */
 .social-links {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 2rem;
     margin-top: 3rem;
-    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+    flex-wrap: wrap;
 }
 
-/* --- CUSTOM LINKEDIN BADGE STYLES --- */
+/* --- CUSTOM LINKEDIN BADGE STYLES (UNCHANGED) --- */
 .linkedin-badge {
     display: block;
     width: 252px;
@@ -186,24 +210,20 @@ section { padding: 6rem 0; }
     color: #fff;
     border: 1px solid #171729;
 }
-
 .linkedin-badge-header {
-    background-color: #0A66C2; /* LinkedIn Blue */
+    background-color: #0A66C2;
     padding: 0.41rem;
 }
-
 .linkedin-badge-header .linkedin-icon {
     width: 24px;
     height: 24px;
     fill: #fff;
 }
-
 .linkedin-badge-body {
     padding: 0.20rem;
     text-align: left;
     padding-left: 1rem;
 }
-
 .linkedin-badge-photo {
     width: 57px;
     height: 57px;
@@ -211,7 +231,6 @@ section { padding: 6rem 0; }
     object-fit: cover;
     margin-bottom: 0.75rem;
 }
-
 .linkedin-badge-name {
     display: block;
     font-size: 1rem;
@@ -220,7 +239,6 @@ section { padding: 6rem 0; }
     margin-bottom: 1rem;
     font-family: proxima-nova, sans-serif;
 }
-
 .linkedin-badge-button {
     display: inline-block;
     padding: 0rem 1.06rem;
@@ -229,13 +247,12 @@ section { padding: 6rem 0; }
     font-weight: 504;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-
 .linkedin-badge:hover .linkedin-badge-button {
     background-color: #1a1a1a;
     color: #ffffff;
 }
 
-/* --- CUSTOM GITHUB BADGE STYLES --- */
+/* --- CUSTOM GITHUB BADGE STYLES (UNCHANGED) --- */
 .github-badge {
     display: block;
     width: 252px;
@@ -246,24 +263,20 @@ section { padding: 6rem 0; }
     color: #fff;
     border: 1px solid #171729;
 }
-
 .github-badge-header {
-    background-color: #24292e; /* GitHub Header Grey */
+    background-color: #24292e;
     padding: 0.41rem;
 }
-
 .github-badge-header .github-icon {
     width: 24px;
     height: 24px;
     fill: #fff;
 }
-
 .github-badge-body {
     padding: 0.20rem;
     text-align: left;
     padding-left: 1rem;
 }
-
 .github-badge-photo {
     width: 57px;
     height: 57px;
@@ -271,7 +284,6 @@ section { padding: 6rem 0; }
     object-fit: cover;
     margin-bottom: 0.75rem;
 }
-
 .github-badge-handle {
     display: block;
     font-size: 1rem;
@@ -280,7 +292,6 @@ section { padding: 6rem 0; }
     margin-bottom: 1rem;
     font-family: proxima-nova, sans-serif;
 }
-
 .github-badge-button {
     display: inline-block;
     padding: 0rem 1.06rem;
@@ -289,14 +300,12 @@ section { padding: 6rem 0; }
     font-weight: 504;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-
 .github-badge:hover .github-badge-button {
     background-color: #1a1a1a;
     color: #ffffff;
 }
 
-
-/* --- CUSTOM X (TWITTER) BADGE STYLES --- */
+/* --- CUSTOM X (TWITTER) BADGE STYLES (UNCHANGED) --- */
 .x-badge {
     display: block;
     width: 252px;
@@ -306,26 +315,21 @@ section { padding: 6rem 0; }
     text-decoration: none;
     color: #fff;
     border: 1px solid #171729;
-    /*transition: transform 0.3s ease;*/
 }
-
 .x-badge-header {
-    background-color: #38434f; /* Dark grey header */
+    background-color: #38434f;
     padding: 0.41rem;
 }
-
 .x-badge-header .x-icon {
     width: 24px;
     height: 24px;
     fill: #fff;
 }
-
 .x-badge-body {
     padding: 0.20rem;
     text-align: left;
     padding-left: 1rem;
 }
-
 .x-badge-photo {
     width: 57px;
     height: 57px;
@@ -333,7 +337,6 @@ section { padding: 6rem 0; }
     object-fit: cover;
     margin-bottom: 0.75rem;
 }
-
 .x-badge-handle {
     display: block;
     font-size: 1rem;
@@ -341,9 +344,7 @@ section { padding: 6rem 0; }
     font-weight: 700;
     margin-bottom: 1rem;
     font-family: proxima-nova, sans-serif;
-    
 }
-
 .x-badge-button {
     display: inline-block;
     padding: 0rem 1.06rem;
@@ -352,14 +353,19 @@ section { padding: 6rem 0; }
     font-weight: 504;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-
 .x-badge:hover .x-badge-button {
     background-color: #1a1a1a;
     color: #ffffff;
 }
 /* --- END SOCIAL STYLES --- */
 
-.main-footer { text-align: center; padding: 2rem 0; background: var(--primary-color); margin-top: 4rem; }
+.main-footer { 
+    text-align: center; 
+    padding: 2rem 0; 
+    background: #111111; /* Dark grey footer */
+    margin-top: 0; /* Remove margin since contact section is now a colored block */
+    border-top: 1px solid #333;
+}
 
 @media(max-width: 768px) {
     h1 { font-size: 2.5rem; }
