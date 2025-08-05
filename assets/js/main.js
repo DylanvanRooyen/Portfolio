@@ -63,18 +63,33 @@ document.addEventListener('DOMContentLoaded', () => {
             projectCard.classList.add('project-card');
             projectCard.dataset.tags = project.tags.join(',');
 
-            projectCard.innerHTML = `
-                <img src="${project.image}" alt="${project.title} Screenshot" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a2e/e0e0e0?text=Image+Not+Found';">
-                <div class="project-content">
-                    <h3>${project.title}</h3>
-                    <p>${project.description}</p>
-                    <div class="project-tags">
-                        ${project.tags.map(tag => `<span>${tag}</span>`).join('')}
-                    </div>
+            // Store the inner content of the card in a variable
+        const cardContent = `
+            <img src="${project.image}" alt="${project.title} Screenshot" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a2e/e0e0e0?text=Image+Not+Found';">
+            <div class="project-content">
+                <h3>${project.title}</h3>
+                <p>${project.description}</p>
+                <div class="project-tags">
+                    ${project.tags.map(tag => `<span>${tag}</span>`).join('')}
                 </div>
-            `;
-            projectsGrid.appendChild(projectCard);
-        });
+            </div>
+        `;
+
+        // Check if the project has a URL
+        if (project.url) {
+            const projectLink = document.createElement('a');
+            projectLink.href = project.url;
+            projectLink.style.textDecoration = 'none'; // Remove underline from link
+            projectLink.style.color = 'inherit';      // Use parent text color
+            projectLink.innerHTML = cardContent;
+            projectCard.appendChild(projectLink);
+        } else {
+            // If no URL, just set the content directly
+            projectCard.innerHTML = cardContent;
+        }
+
+        projectsGrid.appendChild(projectCard);
+    });
     }
 
     function createFilterButtons(projects) {

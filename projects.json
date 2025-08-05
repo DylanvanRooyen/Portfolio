@@ -5,12 +5,13 @@
     "image": "https://placehold.co/600x400/0047AB/FFEA00?text=Photo+Site&font-size=48",
     "tags": ["HTML", "CSS", "JavaScript"]
   },
-  {
-    "title": "Data Visualization Dashboard",
-    "description": "An interactive dashboard for visualizing complex datasets.",
-    "image": "https://placehold.co/600x400/0047AB/FFEA00?text=Data+Dashboard&font-size=48",
-    "tags": ["Python", "JavaScript"]
-  },
+ {
+  "title": "Stock Analysis Dashboard",
+  "description": "An interactive dashboard for visualizing stock data, including price, volume, and technical indicators.",
+  "image": "https://placehold.co/600x400/0047AB/FFEA00?text=Stock+Dashboard&font-size=48",
+  "url": "/stock-dashboard/",
+  "tags": ["JavaScript", "HTML", "CSS"]
+},
   {
     "title": "Personal Blog",
     "description": "A responsive blog platform with a custom content management system.",
