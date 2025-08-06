@@ -9,6 +9,83 @@
     --header-font: 'Space Grotesk', sans-serif;
 }
 
+/* --- CUSTOM CURSOR STYLES --- */
+body {
+    cursor: none;
+}
+
+.cursor-dot,
+.cursor-outline {
+    pointer-events: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, background-color 0.3s ease, border-color 0.3s ease;
+    z-index: 9999;
+}
+
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary-color);
+}
+
+.cursor-outline {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 234, 0, 0.3); /* Semi-transparent yellow */
+    border: 2px solid var(--primary-color);
+}
+
+/* Cursor Grow Effect on Hover */
+.cursor-grow {
+    transform: translate(-50%, -50%) scale(1.5);
+    background-color: rgba(255, 234, 0, 0.5);
+}
+
+/* Trail Effect */
+.trail {
+    pointer-events: none;
+    position: fixed;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--primary-color) 0%, rgba(255, 234, 0, 0) 70%);
+    animation: trail-fade 0.8s linear forwards;
+    z-index: 9998;
+    transition: background 0.3s ease;
+}
+
+/* Inverted Cursor Styles */
+body.cursor-invert .cursor-dot {
+    background-color: var(--bg-color); /* Black */
+}
+body.cursor-invert .cursor-outline {
+    border-color: var(--bg-color); /* Black */
+    background-color: rgba(0, 0, 0, 0.3);
+}
+body.cursor-invert .trail {
+    background: radial-gradient(circle, var(--bg-color) 0%, rgba(0, 0, 0, 0) 70%);
+}
+body.cursor-invert .cursor-grow {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+@keyframes trail-fade {
+    from {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+/* --- END CUSTOM CURSOR STYLES --- */
+
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
@@ -16,6 +93,9 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
+}
+body.no-scroll {
+    overflow: hidden;
 }
 .container { max-width: 1100px; margin: auto; padding: 0 2rem; overflow: hidden; }
 h1, h2 { font-weight: 600; margin-bottom: 1rem; }
@@ -56,16 +136,76 @@ section { padding: 6rem 0; }
     border: 2px solid var(--primary-color);
     transition: transform 0.3s ease;
 }
-/*
-.header-headshot:hover {
-    transform: scale(1.05);
-}*/
-/* --- END STYLES --- */
 
 .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; }
 .main-nav ul { display: flex; list-style: none; }
 .main-nav a { color: var(--text-color); text-decoration: none; padding: 0.5rem 1rem; transition: color 0.3s ease; }
 .main-nav a:hover { color: var(--primary-color); } /* Yellow hover */
+
+/* --- MOBILE NAVIGATION STYLES --- */
+.burger-menu {
+    display: none; /* Hidden by default */
+    cursor: pointer;
+    width: 30px;
+    height: 22px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.burger-line {
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-color);
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+.burger-menu.active .burger-line:nth-child(1) {
+    transform: translateY(9.5px) rotate(45deg);
+}
+.burger-menu.active .burger-line:nth-child(2) {
+    opacity: 0;
+}
+.burger-menu.active .burger-line:nth-child(3) {
+    transform: translateY(-9.5px) rotate(-45deg);
+}
+
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.mobile-nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+.mobile-nav ul {
+    list-style: none;
+    text-align: center;
+}
+.mobile-nav li {
+    margin: 2rem 0;
+}
+.mobile-nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+.mobile-nav a:hover {
+    color: var(--primary-color);
+}
+
 
 #hero {
     height: 100vh;
@@ -116,13 +256,17 @@ section { padding: 6rem 0; }
 #project-filters {
     text-align: center;
     margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 .filter-btn {
     background: transparent;
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
     padding: 0.5rem 1.5rem;
-    margin: 0 0.5rem;
+    margin: 0;
     border-radius: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -150,17 +294,26 @@ section { padding: 6rem 0; }
     border: 1px solid #333;
 }
 .project-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
-.project-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+.project-card img { 
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover; 
+    display: block;
+    transition: transform 0.3s ease; /* Add transition for smooth zoom */
+}
+.project-card:hover img {
+    transform: scale(1.05); /* Zoom in on hover */
+}
 .project-content { padding: 1.5rem; }
 .project-content h3 { color: var(--primary-color); margin-bottom: 0.5rem; }
-.project-tags { margin-top: 1rem; }
+.project-tags { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .project-tags span {
     background: var(--accent-color);
     color: var(--text-color);
     padding: 0.3rem 0.6rem;
     border-radius: 5px;
     font-size: 0.8rem;
-    margin-right: 0.5rem;
+    margin: 0;
 }
 
 #contact {
@@ -189,19 +342,20 @@ section { padding: 6rem 0; }
 }
 .submit-btn { width: 100%; text-align: center; }
 
-/* --- SOCIAL LINKS STYLES (UNCHANGED) --- */
+/* --- SOCIAL LINKS STYLES --- */
 .social-links {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: stretch; /* Make badges same height */
     gap: 2rem;
     margin-top: 3rem;
     flex-wrap: wrap;
 }
 
-/* --- CUSTOM LINKEDIN BADGE STYLES (UNCHANGED) --- */
-.linkedin-badge {
-    display: block;
+/* Base Badge Style */
+.linkedin-badge, .github-badge, .x-badge {
+    display: flex; /* Use flexbox for internal alignment */
+    flex-direction: column;
     width: 252px;
     background-color: #000;
     border-radius: 8px;
@@ -209,172 +363,112 @@ section { padding: 6rem 0; }
     text-decoration: none;
     color: #fff;
     border: 1px solid #171729;
+    transition: transform 0.3s ease;
 }
-.linkedin-badge-header {
-    background-color: #0A66C2;
-    padding: 0.41rem;
-}
-.linkedin-badge-header .linkedin-icon {
-    width: 24px;
-    height: 24px;
-    fill: #fff;
-}
-.linkedin-badge-body {
-    padding: 0.20rem;
-    text-align: left;
-    padding-left: 1rem;
-}
-.linkedin-badge-photo {
-    width: 57px;
-    height: 57px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 0.75rem;
-}
-.linkedin-badge-name {
-    display: block;
-    font-size: 1rem;
-    color: #ffffff;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    font-family: proxima-nova, sans-serif;
-}
-.linkedin-badge-button {
-    display: inline-block;
-    padding: 0rem 1.06rem;
-    border: 1px solid #fff;
-    border-radius: 21px;
-    font-weight: 504;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-.linkedin-badge:hover .linkedin-badge-button {
-    background-color: #1a1a1a;
-    color: #ffffff;
+.linkedin-badge:hover, .github-badge:hover, .x-badge:hover {
+    transform: translateY(-5px);
 }
 
-/* --- CUSTOM GITHUB BADGE STYLES (UNCHANGED) --- */
-.github-badge {
-    display: block;
-    width: 252px;
-    background-color: #000;
-    border-radius: 8px;
-    overflow: hidden;
-    text-decoration: none;
-    color: #fff;
-    border: 1px solid #171729;
-}
-.github-badge-header {
-    background-color: #24292e;
+.linkedin-badge-header, .github-badge-header, .x-badge-header {
     padding: 0.41rem;
+    display: flex;
+    align-items: center;
 }
-.github-badge-header .github-icon {
+.linkedin-badge-header .linkedin-icon, .github-badge-header .github-icon, .x-badge-header .x-icon {
     width: 24px;
     height: 24px;
     fill: #fff;
 }
-.github-badge-body {
-    padding: 0.20rem;
+.linkedin-badge-body, .github-badge-body, .x-badge-body {
+    padding: 1rem;
     text-align: left;
-    padding-left: 1rem;
+    flex-grow: 1; /* Allow body to grow */
+    display: flex;
+    flex-direction: column;
 }
-.github-badge-photo {
+.linkedin-badge-photo, .github-badge-photo, .x-badge-photo {
     width: 57px;
     height: 57px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 0.75rem;
 }
-.github-badge-handle {
+.linkedin-badge-name, .github-badge-handle, .x-badge-handle {
     display: block;
     font-size: 1rem;
     color: #ffffff;
     font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
     margin-bottom: 1rem;
-    font-family: proxima-nova, sans-serif;
 }
-.github-badge-button {
+.linkedin-badge-button, .github-badge-button, .x-badge-button {
     display: inline-block;
-    padding: 0rem 1.06rem;
+    padding: 0.25rem 1.06rem;
     border: 1px solid #fff;
     border-radius: 21px;
-    font-weight: 504;
+    font-weight: 500;
     transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: auto; /* Push button to bottom */
+    text-align: center;
 }
-.github-badge:hover .github-badge-button {
-    background-color: #1a1a1a;
-    color: #ffffff;
+.linkedin-badge:hover .linkedin-badge-button, .github-badge:hover .github-badge-button, .x-badge:hover .x-badge-button {
+    background-color: #333;
 }
-
-/* --- CUSTOM X (TWITTER) BADGE STYLES (UNCHANGED) --- */
-.x-badge {
-    display: block;
-    width: 252px;
-    background-color: #000;
-    border-radius: 8px;
-    overflow: hidden;
-    text-decoration: none;
-    color: #fff;
-    border: 1px solid #171729;
-}
-.x-badge-header {
-    background-color: #38434f;
-    padding: 0.41rem;
-}
-.x-badge-header .x-icon {
-    width: 24px;
-    height: 24px;
-    fill: #fff;
-}
-.x-badge-body {
-    padding: 0.20rem;
-    text-align: left;
-    padding-left: 1rem;
-}
-.x-badge-photo {
-    width: 57px;
-    height: 57px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 0.75rem;
-}
-.x-badge-handle {
-    display: block;
-    font-size: 1rem;
-    color: #ffffff;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    font-family: proxima-nova, sans-serif;
-}
-.x-badge-button {
-    display: inline-block;
-    padding: 0rem 1.06rem;
-    border: 1px solid #fff;
-    border-radius: 21px;
-    font-weight: 504;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-.x-badge:hover .x-badge-button {
-    background-color: #1a1a1a;
-    color: #ffffff;
-}
+/* Specific Badge Colors */
+.linkedin-badge-header { background-color: #0A66C2; }
+.github-badge-header { background-color: #24292e; }
+.x-badge-header { background-color: #38434f; }
 /* --- END SOCIAL STYLES --- */
 
 .main-footer { 
     text-align: center; 
     padding: 2rem 0; 
     background: #111111; /* Dark grey footer */
-    margin-top: 0; /* Remove margin since contact section is now a colored block */
+    margin-top: 0;
     border-top: 1px solid #333;
 }
 
+/* --- MEDIA QUERY FOR MOBILE RESPONSIVENESS --- */
 @media(max-width: 768px) {
-    h1 { font-size: 2.5rem; }
+    h1 { font-size: 2.2rem; }
     h2 { font-size: 2rem; }
-    .main-header .container { flex-direction: column; }
-    .main-nav { margin-top: 1rem; }
-    #hero { background-image: none; height: auto; padding: 8rem 0 4rem 0;}
+    section { padding: 4rem 0; }
+
+    .main-nav {
+        display: none; /* Hide desktop nav */
+    }
+    .burger-menu {
+        display: flex; /* Show burger menu */
+    }
+
+    #hero { 
+        height: auto; 
+        min-height: 80vh;
+        padding: 8rem 0 4rem 0;
+    }
+    #hero h1 span {
+        pointer-events: none; /* Disable hover effect on touch devices */
+    }
+
+    #project-filters {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 1rem; /* Add space for scrollbar */
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+    #project-filters::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+
     .social-links {
         flex-direction: column;
         gap: 1.5rem;
+        align-items: center; /* Center badges */
+    }
+
+    .cursor-dot, .cursor-outline {
+        display: none; /* Hide custom cursor on mobile */
     }
 }
