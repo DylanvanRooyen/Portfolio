@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Task Quest</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="../index.html" class="back-button">&lt;&lt; BACK TO PORTFOLIO</a>
+
+    <div class="arcade-container">
+        <header>
+            <h1>Task Quest 🕹️</h1>
+            <div class="stats-bar">
+                <span>LVL: <span id="level">1</span></span>
+                <div class="xp-bar">
+                    <div id="xp-bar-fill"></div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <ul id="quest-list" class="quest-list">
+                </ul>
+        </main>
+
+        <div class="controls">
+            <form id="add-quest-form">
+                <input 
+                    type="text" 
+                    id="quest-input" 
+                    placeholder="ENTER NEW QUEST..."
+                    autocomplete="off"
+                    required
+                >
+                <button type="submit">ADD</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="level-up-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 id="modal-level-text">LEVEL UP!</h2>
+            <p>You are now Level 2!</p>
+            <button id="modal-close-btn">CONTINUE</button>
+        </div>
+    </div>
+    
+    <audio id="coin-sound" src="sounds/coin.wav"></audio>
+    <audio id="complete-sound"src="sounds/complete.wav"></audio>
+    <audio id="levelup-sound" src="sounds/levelup.wav"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
