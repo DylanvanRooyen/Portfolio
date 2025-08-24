@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. TYPING EFFECT ---
-    const roles = ["Web Developer", "Programmer", "Data Anayst", ];
+    const roles = ["Web Developer", "Python Programmer", "Data Anayst"];
     let roleIndex = 0;
     let charIndex = 0;
     const typingElement = document.getElementById('typing-effect');
@@ -132,35 +132,45 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 3. HERO TITLE HOVER EFFECT ---
     const heroTitle = document.getElementById('hero-title');
     if (heroTitle) {
-        const text = heroTitle.innerText;
+        const originalText = heroTitle.innerText;
         heroTitle.innerHTML = ''; // Clear original text
-        const letters = text.split('');
+        
+        const words = originalText.split(' ');
+        const allEffectSpans = []; // Spans that get the hover effect
 
-        // Wrap each letter in a span
-        letters.forEach(letter => {
-            const span = document.createElement('span');
-            span.textContent = letter;
-            if (letter.trim() === '') {
-                // Use a non-breaking space to make spaces hoverable
-                span.innerHTML = '&nbsp;';
+        words.forEach((word, index) => {
+            const wordWrapper = document.createElement('span');
+            wordWrapper.style.display = 'inline-block'; // Prevents the word from breaking
+
+            for (const letter of word) {
+                const letterSpan = document.createElement('span');
+                letterSpan.className = 'letter'; // Add class for styling
+                letterSpan.textContent = letter;
+                wordWrapper.appendChild(letterSpan);
+                allEffectSpans.push(letterSpan);
             }
-            heroTitle.appendChild(span);
+            heroTitle.appendChild(wordWrapper);
+
+            if (index < words.length - 1) {
+                const spaceSpan = document.createElement('span');
+                spaceSpan.className = 'letter'; // Add class for styling
+                spaceSpan.innerHTML = '&nbsp;';
+                heroTitle.appendChild(spaceSpan);
+                allEffectSpans.push(spaceSpan);
+            }
         });
 
-        const spans = heroTitle.querySelectorAll('span');
-        spans.forEach((span, index) => {
+        allEffectSpans.forEach((span, index) => {
             span.addEventListener('mouseover', () => {
-                // Add class to the hovered span and its direct neighbors
                 span.classList.add('hover-yellow');
-                if (spans[index - 1]) spans[index - 1].classList.add('hover-yellow');
-                if (spans[index + 1]) spans[index + 1].classList.add('hover-yellow');
+                if (allEffectSpans[index - 1]) allEffectSpans[index - 1].classList.add('hover-yellow');
+                if (allEffectSpans[index + 1]) allEffectSpans[index + 1].classList.add('hover-yellow');
             });
 
             span.addEventListener('mouseout', () => {
-                // Remove classes on mouse out
                 span.classList.remove('hover-yellow');
-                if (spans[index - 1]) spans[index - 1].classList.remove('hover-yellow');
-                if (spans[index + 1]) spans[index + 1].classList.remove('hover-yellow');
+                if (allEffectSpans[index - 1]) allEffectSpans[index - 1].classList.remove('hover-yellow');
+                if (allEffectSpans[index + 1]) allEffectSpans[index + 1].classList.remove('hover-yellow');
             });
         });
     }

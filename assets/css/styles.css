@@ -226,12 +226,12 @@ section { padding: 6rem 0; }
 }
 
 /* --- HERO TITLE HOVER STYLES --- */
-#hero h1 span {
-    display: inline-block; /* Allows for transform and better spacing */
+#hero h1 .letter {
+    display: inline-block;
     transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
-#hero h1 span.hover-yellow {
+#hero h1 .letter.hover-yellow {
     color: var(--primary-color);
     transform: translateY(-4px) scale(1.1);
 }
