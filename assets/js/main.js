@@ -55,44 +55,42 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-    function displayProjects(projects) {
-        if (!projectsGrid) return;
-        projectsGrid.innerHTML = ''; // Clear existing projects
-        projects.forEach(project => {
-            const projectCard = document.createElement('div');
-            projectCard.classList.add('project-card');
-            projectCard.dataset.tags = project.tags.join(',');
+        function displayProjects(projects) {
+            if (!projectsGrid) return;
+            projectsGrid.innerHTML = ''; // Clear existing projects
+            
+            projects.forEach(project => {
+                const projectCard = document.createElement('div');
+                projectCard.classList.add('project-card');
+                projectCard.dataset.tags = project.tags.join(',');
 
-            // Store the inner content of the card in a variable
-            const cardContent = `
-                <img src="${project.image}" alt="${project.title} Screenshot" onerror="this.onerror=null;this.src='https.placehold.co/600x400/1a1a2e/e0e0e0?text=Image+Not+Found';">
-                <div class="project-content">
-                    <h3>${project.title}</h3>
-                    <p>${project.description}</p>
-                    <div class="project-tags">
-                        ${project.tags.map(tag => `<span>${tag}</span>`).join('')}
+                // Store the link for the "Live Demo" button
+                const liveUrl = project.url ? `href="${project.url}" target="_blank" rel="noopener noreferrer"` : 'href="#"';
+                
+                // Store the link for the "View Code" button
+                const codeUrl = project.codeUrl ? `href="${project.codeUrl}" target="_blank" rel="noopener noreferrer"` : 'href="#"';
+
+                // --- THIS IS THE NEW HTML STRUCTURE ---
+                projectCard.innerHTML = `
+                    <div class="project-image-wrapper">
+                        <img src="${project.image}" alt="${project.title} Screenshot" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a2e/e0e0e0?text=Image+Not+Found';">
+                        <div class="project-hover-overlay">
+                            <a ${liveUrl} class="overlay-btn">Live Demo</a>
+                            <a ${codeUrl} class="overlay-btn">View Code</a>
+                        </div>
                     </div>
-                </div>
-            `;
+                    <div class="project-content">
+                        <h3>${project.title}</h3>
+                        <p class="project-description">${project.description}</p>
+                        <div class="project-tags">
+                            ${project.tags.map(tag => `<span>${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
 
-            // Check if the project has a URL
-            if (project.url) {
-                const projectLink = document.createElement('a');
-                projectLink.href = project.url;
-                projectLink.target = "_blank"; // Open in a new tab
-                projectLink.rel = "noopener noreferrer";
-                projectLink.style.textDecoration = 'none'; // Remove underline from link
-                projectLink.style.color = 'inherit';      // Use parent text color
-                projectLink.innerHTML = cardContent;
-                projectCard.appendChild(projectLink);
-            } else {
-                // If no URL, just set the content directly
-                projectCard.innerHTML = cardContent;
-            }
-
-            projectsGrid.appendChild(projectCard);
-        });
-    }
+                projectsGrid.appendChild(projectCard);
+            });
+        }
 
     function createFilterButtons(projects) {
         if (!filtersContainer) return;
@@ -197,20 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 5. CUSTOM CURSOR & TRAIL EFFECT ---
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorOutline = document.querySelector('.cursor-outline');
-    const trailCount = 10;
-    const trails = [];
-
-    // Create trail elements
-    for(let i = 0; i < trailCount; i++) {
-        const trail = document.createElement('div');
-        trail.classList.add('trail');
-        document.body.appendChild(trail);
-        trails.push({
-            el: trail,
-            x: -20,
-            y: -20
-        });
-    }
 
     let mouseX = 0;
     let mouseY = 0;
@@ -233,25 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
         outlineY += (mouseY - outlineY) * ease;
         cursorOutline.style.left = `${outlineX}px`;
         cursorOutline.style.top = `${outlineY}px`;
-        
-        // Animate trail
-        let prevTrail = {x: outlineX, y: outlineY};
-        trails.forEach((trail, index) => {
-            const currentTrail = trail;
-            const nextTrail = trails[index + 1] || trails[0];
-            
-            currentTrail.x += (prevTrail.x - currentTrail.x) * 0.4;
-            currentTrail.y += (prevTrail.y - currentTrail.y) * 0.4;
-            
-            const size = 10 - index * 0.5; // Decrease size for each trail element
-            currentTrail.el.style.width = `${size}px`;
-            currentTrail.el.style.height = `${size}px`;
-            currentTrail.el.style.left = `${currentTrail.x}px`;
-            currentTrail.el.style.top = `${currentTrail.y}px`;
-
-            prevTrail = currentTrail;
-        });
-
 
         requestAnimationFrame(animateCursor);
     }
@@ -267,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Add color inversion effect for the contact section
+    // Add color inversion effect ONLY for the contact section
     const contactSection = document.getElementById('contact');
     contactSection.addEventListener('mouseenter', () => {
         document.body.classList.add('cursor-invert');

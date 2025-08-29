@@ -4,6 +4,7 @@
     "description": "An interactive dashboard for visualizing stock data, including price, volume, and technical indicators.",
     "image": "assets/images/StockMarketDashboard.png",
     "url": "/stock-dashboard/",
+    "codeUrl":"https://github.com/DylanvanRooyen/Portfolio/tree/38fd7968240d6187cb87898773da7259739754e4/stock-dashboard",
     "tags": ["JavaScript", "HTML", "CSS"]
 },
 {
@@ -11,6 +12,7 @@
     "description": "A simple and intuitive, retro arcade styled, task managment app to manage daily tasks.",
     "image": "assets/images/RetroTaskQuest.png",
     "url": "/ArcadeTaskMan/",
+    "codeUrl":"https://github.com/DylanvanRooyen/Portfolio/tree/38fd7968240d6187cb87898773da7259739754e4/ArcadeTaskMan",
     "tags": ["JavaScript", "CSS"]
 },
 {
